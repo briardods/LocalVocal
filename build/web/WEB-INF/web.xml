@@ -4,9 +4,17 @@
         <servlet-name>Location</servlet-name>
         <servlet-class>assigntwo.Location</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LocationList</servlet-name>
+        <servlet-class>assigntwo.LocationList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Location</servlet-name>
         <url-pattern>/Location</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LocationList</servlet-name>
+        <url-pattern>/LocationList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
