@@ -43,6 +43,7 @@ public class LocationList extends HttpServlet {
         Class.forName(dbDriver);
         conn = DriverManager.getConnection(dbUrl, userName, password);
         stmt = conn.prepareStatement("SELECT * FROM " + dbTable);
+        
     }
 
     @Override
@@ -50,6 +51,7 @@ public class LocationList extends HttpServlet {
             throws ServletException, IOException {
         JSONObject json = new JSONObject();
         JSONArray cities = new JSONArray();
+        JSONObject result = new JSONObject();
         try {
             ResultSet rs = stmt.executeQuery();
 
@@ -57,11 +59,12 @@ public class LocationList extends HttpServlet {
                 while (rs.next()) {
                     json = new JSONObject();
                     json.put("city", rs.getString("city"));
-                    json.put("latitude", rs.getBigDecimal("latitude"));
-                    json.put("longitude", rs.getBigDecimal("longitude"));
+                    json.put("latitude", rs.getBigDecimal("latitude").toString());
+                    json.put("longitude", rs.getBigDecimal("longitude").toString());
                     cities.add(json);
                 }
-                System.out.println(json.toString());
+                result.put("result", cities);
+                System.out.println(cities.toString());
             } else {
                 json.put("info", "fail");
             }
@@ -70,6 +73,6 @@ public class LocationList extends HttpServlet {
         }
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(cities.toString());
+        response.getWriter().write(result.toString());
     }
 }
