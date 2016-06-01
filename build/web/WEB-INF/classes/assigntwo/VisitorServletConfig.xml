@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>CustomerServlet Configuration Properties</comment>
+<entry key="dbDriver">com.mysql.jdbc.Driver</entry>
+<entry key="dbUrl">jdbc:mysql://raptor2.aut.ac.nz:3306/testUnrestricted</entry>
+<entry key="dbTable">location</entry>
+<entry key="dbId">id</entry>
+<entry key="dbCity">city</entry>
+<entry key="dbLat">latitude</entry>
+<entry key="dbLong">longitude</entry>
+<entry key="dbImage">image</entry>
+<entry key="dbAudio">audio</entry>
+<entry key="dbPop">population</entry>
+<entry key="user">student</entry>
+<entry key="password">fpn871</entry>
+</properties>
