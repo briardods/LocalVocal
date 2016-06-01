@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <Button
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:onClick="pickAContactNumber"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/add_friends_from_contact_list"
+        style="?android:attr/borderlessButtonStyle"
+        android:textIsSelectable="true"
+        android:textColor="#cc0000"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:background="@drawable/my_button_bg"
+        android:typeface="normal"
+        android:fontFamily="Arial" />
+
+    <TextView
+        android:id="@+id/contact_number"
+        android:layout_width="wrap_content"
+        android:textStyle="bold"
+        android:text="@string/road_trip_buddies"
+        android:textSize="16dp"
+        android:layout_height="wrap_content"
+        android:textColor="#353544" />
+
+
+    <ListView
+        android:layout_width="293dp"
+        android:layout_height="319dp"
+        android:id="@+id/listView"
+        android:layout_gravity="center_horizontal" />
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <Button
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:onClick="startTrip"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Start Trip"
+        style="?android:attr/borderlessButtonStyle"
+        android:textIsSelectable="true"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:typeface="normal"
+        android:fontFamily="Arial"
+        android:background="#cc0000" />
+
+</LinearLayout>

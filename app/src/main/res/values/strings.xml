@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LocalVocal</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_send">Take a Trip</string>
+    <string name="title_activity_trip">.TripActivity</string>
+    <string name="add_friends_from_contact_list">Add friends from Contact List</string>
+    <string name="road_trip_buddies">Road Trip Buddies:</string>
+    <string name="title_activity_travelling">Travelling</string>
+</resources>

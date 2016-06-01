@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.briar.localvocal.MainActivity"
+    tools:showIn="@layout/activity_main"
+    android:background="#ffffff">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:background="#00d73c3c"
+        android:src="@drawable/local_vocal_logo"
+        android:layout_marginTop="62dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_send"
+        android:background="#00f9f9f9"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="#cc0000"
+        android:textStyle="bold"
+        android:textSize="28dp"
+        android:onClick="sendMessage"
+        android:typeface="sans"
+        android:fontFamily="Arial"
+        android:textIsSelectable="true"
+        android:layout_below="@+id/explore"
+        android:id="@+id/button"
+        android:layout_alignRight="@+id/explore"
+        android:layout_alignEnd="@+id/explore"
+        android:layout_alignLeft="@+id/explore"
+        android:layout_alignStart="@+id/explore" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Explore"
+        android:id="@+id/explore"
+        android:background="#00ffffff"
+        android:fontFamily="Arial"
+        android:textColor="#cc0202"
+        android:foreground="#00ffffff"
+        android:textStyle="bold"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_marginTop="59dp"
+        android:textSize="28dp"
+        android:textIsSelectable="true"
+        android:typeface="sans"
+        android:layout_below="@+id/imageView"
+        android:layout_alignLeft="@+id/imageView"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView" />
+</RelativeLayout>
