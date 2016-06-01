@@ -8,6 +8,10 @@
         <servlet-name>LocationList</servlet-name>
         <servlet-class>assigntwo.LocationList</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LocationServlet</servlet-name>
+        <servlet-class>assigntwo.LocationServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Location</servlet-name>
         <url-pattern>/Location</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>LocationList</servlet-name>
         <url-pattern>/LocationList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LocationServlet</servlet-name>
+        <url-pattern>/LocationServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
