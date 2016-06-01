@@ -23,6 +23,8 @@ import java.util.Enumeration;
 import java.util.Properties;
 import javax.naming.NamingException;
 import org.json.simple.JSONObject;
+import java.net.URL;
+import java.util.Base64;
 
 public class Location extends HttpServlet {
 
@@ -35,6 +37,7 @@ public class Location extends HttpServlet {
     private String longitude;
     private String userName;
     private String password;
+    private String city;
 
     public Location()
             throws SQLException, ClassNotFoundException, IOException, NamingException {
@@ -45,13 +48,13 @@ public class Location extends HttpServlet {
         dbTable = properties.get("dbTable").toString();
         latitude = properties.get("dbLat").toString();
         longitude = properties.get("dbLong").toString();
+        city = properties.get("dbCity").toString();
         userName = properties.get("user").toString();
         password = properties.get("password").toString();
 
         Class.forName(dbDriver);
         conn = DriverManager.getConnection(dbUrl, userName, password);
-        stmt = conn.prepareStatement("SELECT * FROM " + dbTable + " WHERE (" + latitude + " BETWEEN ? AND ? ) AND ( " + longitude + " BETWEEN ? AND ? )");
-
+        stmt = conn.prepareStatement("SELECT * FROM " + dbTable + " WHERE " + city + " = ?");
     }
 
     @Override
@@ -64,24 +67,27 @@ public class Location extends HttpServlet {
             throws ServletException, IOException {
         JSONObject json = new JSONObject();
         Enumeration paramNames = request.getParameterNames();
-        BigDecimal params[] = new BigDecimal[2];
+        String params[] = new String[1];
         int i = 0;
         while (paramNames.hasMoreElements()) {
             String paramName = (String) paramNames.nextElement();
             String[] paramValues = request.getParameterValues(paramName);
-            params[i] = new BigDecimal(paramValues[0]);
+            params[i] = new String(paramValues[0]);
             i++;
         }
         try {
-            stmt.setBigDecimal(1, params[0].subtract(new BigDecimal(0.1)));
-            stmt.setBigDecimal(2, params[0].add(new BigDecimal(0.1)));
-            stmt.setBigDecimal(3, params[1].subtract(new BigDecimal(0.1)));
-            stmt.setBigDecimal(4, (params[1].add(new BigDecimal(0.1))));
+            stmt.setString(1, params[0]);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                InputStream inputStreamImage = new FileInputStream("C:\\Users\\Briar\\Documents\\School\\2016 Semester 1\\DMS\\AssignTwo\\src\\images\\" + rs.getString("image"));
-                InputStream inputStreamAudio = new FileInputStream("C:\\Users\\Briar\\Documents\\School\\2016 Semester 1\\DMS\\AssignTwo\\src\\audio\\" + rs.getString("audio"));
+                
+                URL audioUrl = this.getClass().getResource("images/" + rs.getString("image"));
+                String audioPath = audioUrl.getPath();
+                URL imageUrl = this.getClass().getResource("audio/" + rs.getString("audio"));
+                String imagePath = imageUrl.getPath();
+                InputStream inputStreamImage = new FileInputStream(audioPath);
+                InputStream inputStreamAudio = new FileInputStream(imagePath);
+                
                 String encodedImage = encodeFile(inputStreamImage);
                 String encodedAudio = encodeFile(inputStreamAudio);
                 json.put("city", rs.getString("city"));
@@ -113,7 +119,7 @@ public class Location extends HttpServlet {
             e.printStackTrace();
         }
         bytes = output.toByteArray();
-        String encodedString = new sun.misc.BASE64Encoder().encode(bytes);
+        String encodedString = Base64.getEncoder().encodeToString(bytes);;
         return encodedString;
     }
 }
