@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.DriverManager;
@@ -76,10 +77,21 @@ public class LocationServlet extends HttpServlet {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                String imgFile = "/images/" + rs.getString("image");
-                String audioFile = "/audio/" + rs.getString("audio");
-                String encodedImage = encodeFile(imgFile);
-                String encodedAudio = encodeFile(audioFile);
+//                String imgFile = "/images/" + rs.getString("image");
+//                String audioFile = "/audio/" + rs.getString("audio");
+//                String encodedImage = encodeFile(imgFile);
+//                String encodedAudio = encodeFile(audioFile);
+                
+                URL audioUrl = this.getClass().getResource("images/" + rs.getString("image"));
+                String audioPath = audioUrl.getPath();
+                URL imageUrl = this.getClass().getResource("audio/" + rs.getString("audio"));
+                String imagePath = imageUrl.getPath();
+                InputStream inputStreamImage = new FileInputStream(audioPath);
+                InputStream inputStreamAudio = new FileInputStream(imagePath);
+                
+                String encodedImage = encodeFile(inputStreamImage);
+                String encodedAudio = encodeFile(inputStreamAudio);
+
                 json.put("city", rs.getString("city"));
                 json.put("population", rs.getInt("population"));
                 json.put("image", encodedImage);
@@ -97,12 +109,9 @@ public class LocationServlet extends HttpServlet {
         response.getWriter().write(json.toString());
     }
 
-    private String encodeFile(String fileName) throws FileNotFoundException {
-        String absFileName = getServletContext().getRealPath(fileName);
-                InputStream inputStream = new FileInputStream(absFileName);
-                
+    private String encodeFile(InputStream inputStream) {
         byte[] bytes;
-        byte[] buffer = new byte[819200];
+        byte[] buffer = new byte[8192];
         int bytesRead;
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         try {
@@ -113,11 +122,7 @@ public class LocationServlet extends HttpServlet {
             e.printStackTrace();
         }
         bytes = output.toByteArray();
-        String encodedString = new sun.misc.BASE64Encoder().encode(bytes);
-//        Base64.getDecoder().decode(dbUrl);
-//        String encodedString = output.toString();
-//        String encodedString = Base64.getEncoder().encodeToString(bytes);
-
+        String encodedString = Base64.getEncoder().encodeToString(bytes);;
         return encodedString;
     }
 
