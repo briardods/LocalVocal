@@ -47,13 +47,15 @@ public class Travelling extends AppCompatActivity implements ConnectionCallbacks
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sendRequest();
 
+
+        setContentView(R.layout.activity_travelling);
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                     1);
         }
+        sendRequest();
 
         proximity = 10000;
         destinations = destinationList();

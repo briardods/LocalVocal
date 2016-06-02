@@ -15,8 +15,8 @@
         android:weightSum="1">
 
         <ImageView
-            android:layout_width="272dp"
-            android:layout_height="265dp"
+            android:layout_width="match_parent"
+            android:layout_height="366dp"
             android:id="@+id/imageView2"
             android:layout_gravity="center_vertical"
             android:src="@drawable/local_vocal_logo" />

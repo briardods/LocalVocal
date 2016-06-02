@@ -4,6 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
-    android:textColor="#cc0000"
+    android:textColor="#FF0B0B98"
     android:singleLine="false"
     android:fontFamily="Helvetica" />
